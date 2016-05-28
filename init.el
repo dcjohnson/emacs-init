@@ -1,11 +1,7 @@
 (require 'package)
-
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://www.melpa.org/packages/"))
-
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
 (package-initialize)
 
 (require 'go-autocomplete)
