@@ -29,6 +29,12 @@
 (defun misc ()
   (setq inhibit-startup-screen t))
 
+(defun javascript ()
+  (add-hook 'js-mode-hook
+	    (lambda ()
+	      (setq tab-width 2)
+	      (setq js-indent-level 2))))
+  
 (packages)
 (global-autocomplete)
 (go)
@@ -36,6 +42,7 @@
 (colors)
 (automodes)
 (misc)
+(javascript)
 
 (set-default-font "Go Mono")
 
@@ -47,9 +54,10 @@
  '(custom-safe-themes
    (quote
     ("d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
+ '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (speck rust-mode groovy-mode go-mode csharp-mode yaml-mode sml-mode seti-theme markdown-mode magit let-alist julia-mode haskell-mode go-autocomplete flyspell-correct-popup docker distinguished-theme atom-one-dark-theme 2048-game))))
+    (protobuf-mode speck rust-mode groovy-mode go-mode csharp-mode yaml-mode sml-mode seti-theme markdown-mode magit let-alist julia-mode haskell-mode go-autocomplete flyspell-correct-popup docker distinguished-theme atom-one-dark-theme 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
