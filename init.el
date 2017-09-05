@@ -20,8 +20,7 @@
   (require 'haskell-mode))
 
 (defun colors()
-  (add-to-list 'custom-theme-load-path "~/dev/emacs-theme-gruvbox/")
-  (load-theme 'gruvbox t))
+  (load-theme 'inverse-acme t))
 
 (defun automodes ()
   (add-to-list 'auto-mode-alist '("\\.asm\\'" . text-mode)))
