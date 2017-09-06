@@ -22,46 +22,33 @@
 (defun colors()
   (load-theme 'inverse-acme t))
 
-(defun automodes ()
-  (add-to-list 'auto-mode-alist '("\\.asm\\'" . text-mode)))
-
-(defun misc ()
-  (setq inhibit-startup-screen t))
-
 (defun javascript ()
   (add-hook 'js-mode-hook
 	    (lambda ()
 	      (setq tab-width 2)
 	      (setq js-indent-level 2))))
-  
+
+(defun what-face (pos)
+  (interactive  "d")
+  (let ((face (or (get-char-property (point) 'read-face-name)
+		  (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
+
+(defun proof ()
+  (require 'proof-site "~/.emacs.d/lisp/PG/generic/proof-site"))
+
+(defun bash ()
+  (add-hook 'sh-mode-hook
+	    (lambda ()
+	      (setq indent-tabs-mode nil)
+	      (setq sh-basic-offset 2)
+	      (setq sh-indent-level 2))))
+
 (packages)
-(global-autocomplete)
-(go)
-(haskell)
+(proof)
+;; (global-autocomplete)
+;; (go)
+;; (haskell)
 (colors)
-(automodes)
-(misc)
 (javascript)
-
-(set-default-font "Go Mono")
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
- '(js-indent-level 2)
- '(package-selected-packages
-   (quote
-    (protobuf-mode speck rust-mode groovy-mode go-mode csharp-mode yaml-mode sml-mode seti-theme markdown-mode magit let-alist julia-mode haskell-mode go-autocomplete flyspell-correct-popup docker distinguished-theme atom-one-dark-theme 2048-game))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
+(bash)
