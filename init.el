@@ -19,23 +19,20 @@
 (defun haskell ()
   (require 'haskell-mode))
 
-(defun colors()
+(defun colors ()
   (load-theme 'inverse-acme t))
+
+(defun automodes ()
+  (add-to-list 'auto-mode-alist '("\\.asm\\'" . text-mode)))
+
+(defun misc ()
+  (setq inhibit-startup-screen t))
 
 (defun javascript ()
   (add-hook 'js-mode-hook
 	    (lambda ()
 	      (setq tab-width 2)
 	      (setq js-indent-level 2))))
-
-(defun what-face (pos)
-  (interactive  "d")
-  (let ((face (or (get-char-property (point) 'read-face-name)
-		  (get-char-property (point) 'face))))
-    (if face (message "Face: %s" face) (message "No face at %d" pos))))
-
-(defun proof ()
-  (require 'proof-site "~/.emacs.d/lisp/PG/generic/proof-site"))
 
 (defun bash ()
   (add-hook 'sh-mode-hook
@@ -44,11 +41,39 @@
 	      (setq sh-basic-offset 2)
 	      (setq sh-indent-level 2))))
 
-(packages)
+(defconst my-protobuf-style
+  '((c-basic-offset . 4)
+    (indent-tabs-mode . nil)))
+
+(defun protobuf ()
+  (add-hook 'protobuf-mode-hook
+	    (lambda ()
+ 	      (c-add-style "protobuf-style" my-protobuf-style t))))
+
+(defun proof ()
+  (require 'proof-site "~/.emacs.d/lisp/PG/generic/proof-site"))
+
+(defun ld ()
+  (require 'ld-mode "~/.emacs.d/lisp/ld-mode/ld-mode.el"))
+
+(defun coq ()
+  (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+  (autoload 'coq-mode "gallina.el" "Major mode for editing Coq vernacular." t))
+
+(defun what-face (pos)
+  (interactive "d")
+  (let ((face (or (get-char-property (point) 'read-face-name)
+		  (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
+
 (proof)
-;; (global-autocomplete)
-;; (go)
-;; (haskell)
+(packages)
+(global-autocomplete)
+(go)
+(haskell)
 (colors)
+(misc)
 (javascript)
+(ld)
 (bash)
+;; (protobuf)
