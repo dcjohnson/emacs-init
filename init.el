@@ -76,4 +76,4 @@
 (javascript)
 (ld)
 (bash)
-;; (protobuf)
+(protobuf)
